@@ -5,6 +5,7 @@ package week_1.task_4;
  * @create 2021/7/25 - 19:00
  */
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -15,9 +16,9 @@ public class StringTools {
      *
      * @return true 仅当字符串全为数字
      */
-    public static boolean isALLNumber(String parameter){
+    public static boolean isAllNumber(String parameter){
         for (int i = 0; i < parameter.length(); i++) {
-            if (parameter.charAt(i) < '0' || parameter.charAt(i) > '0') {
+            if (parameter.charAt(i) < '0' || parameter.charAt(i) > '9') {
                 return false;
             }
         }
@@ -53,7 +54,7 @@ public class StringTools {
      *
      * @return  true 仅当字符串全为字母
      */
-    private static boolean isAllLetter(String parameter){
+    public static boolean isAllLetter(String parameter){
         for (int i = 0; i < parameter.length(); i++) {
             if (parameter.charAt(i) < 'A' || parameter.charAt(i) > 'z') {
                 return false;
@@ -69,7 +70,7 @@ public class StringTools {
     public  static String upperAllLowerLetter(String parameter){
         if (StringTools.isAllLetter(parameter)) {
             for (int i = 0; i < parameter.length(); i++) {
-                if (parameter.charAt(i) > 'a' && parameter.charAt(i) < 'z') {
+                if (parameter.charAt(i) >= 'a' && parameter.charAt(i) <= 'z') {
                     //parameter = parameter.replace(parameter.charAt(i),Character.toUpperCase(parameter.charAt(i)));
                     parameter = parameter.replace(parameter.charAt(i), (char)((int)parameter.charAt(i) - 32));
                 }
@@ -79,16 +80,13 @@ public class StringTools {
         return parameter;
     }
 
-    public class QuickSort{
-        public static void sort(char[] chars){
-            Random random = new Random();
-            //消除对输入的依赖
-            random.nextInt(chars.length - 1);
-
-        }
-
+    /**
+     * 辅助内部类
+     * 使用快速排序实现字符排序
+     */
+    private static class QuickSort{
         private static void sort(char[] chars, int low, int high){
-            if (high <= low) {
+            if (low < high) {
                 //切分
                 int j = partition(chars, low, high);
                 // 排序位置‘j’的左半部分
@@ -108,18 +106,33 @@ public class StringTools {
             //右扫描指针
             int j = high;
             //切分元素
-            char ch = chars[low];
-            while (true) {
+            char ch = chars[i];
+            while (i < j) {
                 //左右扫描，检查扫描是否结束并交换元素
-
+                while (i < j && chars[j] >= ch) --j;
+                chars[i] = chars[j];
+                while (i < j && chars[i] <= ch) ++i;
+                chars[j] = chars[i];
             }
-
+            chars[i] = ch;
+            return i;
         }
     }
 
     public static String sortNumberByAsc(String parameter){
-        if (StringTools.isAllLetter(parameter)){
+        if (StringTools.isAllNumber(parameter)){
+            char[] chars = parameter.toCharArray();
+            QuickSort.sort(chars,0,chars.length - 1);
+            return Arrays.toString(chars);
+        }
+        return null;
+    }
 
+    public static String sortCharByAsc(String parameter){
+        if (StringTools.isAllLetter(parameter)){
+            char[] chars = parameter.toCharArray();
+            QuickSort.sort(chars,0,chars.length - 1);
+            return Arrays.toString(chars);
         }
         return null;
     }

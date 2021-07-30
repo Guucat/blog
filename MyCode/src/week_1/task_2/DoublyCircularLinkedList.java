@@ -5,9 +5,9 @@ package week_1.task_2;
  * @create 2021/7/24 - 13:56
  */
 public class DoublyCircularLinkedList {
-    private String element = null;
-    public DoublyCircularLinkedList next = this.prior;
-    public DoublyCircularLinkedList prior = this.next;
+    private String element;
+    public DoublyCircularLinkedList next;
+    public DoublyCircularLinkedList prior;
 
     public DoublyCircularLinkedList(String element){
         this.element = element;

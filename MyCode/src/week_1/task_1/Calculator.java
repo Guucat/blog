@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
 
 public class Calculator {
     // 数字栈
-    private Stack<Long> numberStack = null;
+    private Stack<Long> numberStack;
     // 操作符栈
-    private Stack<Character> operatorStack = null;
+    private Stack<Character> operatorStack;
 
     /**
      *
