@@ -16,11 +16,13 @@ public class TestCode {
         SingleLinkedList newNode = SingleLinkedList.flipLinkedList(head);
         SingleLinkedList.printLinkedList(newNode);
 
-        //SingleLinkedList.printLinkedList(head);
+        SingleLinkedList.printLinkedList(head);
+
 
     }
-    public static void  aVoid (SingleLinkedList a) {
+    public static SingleLinkedList  aVoid (SingleLinkedList a) {
         a.next = null;
+        return a;
     }
 
 }

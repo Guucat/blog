@@ -23,28 +23,58 @@ public class SingleLinkedList {
     }
 
     public static SingleLinkedList flipLinkedList(SingleLinkedList head) {
+        /**
+         * 为反转后的每一个结点开辟新空间 原链表不会改变
+         */
         SingleLinkedList newHead = new SingleLinkedList();
-        SingleLinkedList temporary = new SingleLinkedList();
         SingleLinkedList nowNode = null;
-        temporary = head.next;
-        //to get the node end of the linked list;
-        while (temporary.next != null) {
-            temporary = temporary.next;
+        SingleLinkedList nowNode_new = null;
+        SingleLinkedList t = head.next;
+        //得到最后一个结点
+        while (t.next != null) {
+            t = t.next;
         }
-        nowNode = temporary;
-        newHead.next = nowNode;
+        nowNode = t;
+        newHead.addNode(new SingleLinkedList(t.value));
+        nowNode_new = newHead.next;
         //TODO start to flip link list
         while (true) {
-            temporary = head.next;
-            while (temporary.next != nowNode) {
-                temporary = temporary.next;
-                if (temporary == null) {
+            t = head.next;
+            while (t.next != nowNode) {
+                t = t.next;
+                if (t == null) {
                     return newHead;
                 }
             }
-            nowNode.addNode(temporary);
-            nowNode = nowNode.next;
+            nowNode_new.addNode(new SingleLinkedList(t.value));
+            nowNode_new = nowNode_new.next;
+            nowNode = t;
         }
+
+        /**
+         * 没有为反转后的结点开辟新空间 原链表会改变
+         */
+//        SingleLinkedList newHead = new SingleLinkedList();
+//        SingleLinkedList nowNode = null;
+//        SingleLinkedList t = head.next;
+//        //得到最后一个结点
+//        while (t.next != null) {
+//            t = t.next;
+//        }
+//        nowNode = t;
+//        newHead.addNode(t);
+//        //TODO start to flip link list
+//        while (true) {
+//            t = head.next;
+//            while (t.next != nowNode) {
+//                t = t.next;
+//                if (t == null) {
+//                    return newHead;
+//                }
+//            }
+//            nowNode.addNode(t);
+//            nowNode = nowNode.next;
+//        }
     }
 
     public static void  printLinkedList(SingleLinkedList head) {
