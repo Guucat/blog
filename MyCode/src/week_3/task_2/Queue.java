@@ -15,7 +15,7 @@ public class Queue<Item> {
     }
 
     public Boolean isEmpty() {
-        return N == 0;
+        return first == null;
     }
 
     public int size() {
@@ -24,7 +24,7 @@ public class Queue<Item> {
 
     public void enqueue(Item item) {
         Node oldLast = last;
-        Node last = new Node();
+        last = new Node();
         last.item = item;
         last.next = null;
         if (isEmpty()) {
@@ -38,12 +38,16 @@ public class Queue<Item> {
     public Item dequeue() {
         Item item = first.item;
         first = first.next;
-        N--;
+
         if (isEmpty()) {
             last = null;
         }
+        N--;
         return item;
     }
 
+    public static void main(String[] args) {
+
+    }
 
 }
