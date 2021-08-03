@@ -1,12 +1,12 @@
 package week_3.task_1.com.service.impl;
 
-import week_3.task_1.com.dao.StudentDao;
 import week_3.task_1.com.dao.impl.StudentDaoImpl;
 import week_3.task_1.com.entity.Student;
 import week_3.task_1.com.service.StudentService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author shengyi
@@ -31,12 +31,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public ArrayList<Student> queryAllStudent() throws SQLException, ClassNotFoundException {
+    public List<Student> queryAllStudent() throws SQLException, ClassNotFoundException {
         return studentDao.queryAllStudent();
     }
 
     @Override
-    public ArrayList<Student> queryStudentScoreFailed() throws SQLException, ClassNotFoundException {
+    public List<Student> queryStudentScoreFailed() throws SQLException, ClassNotFoundException {
         return studentDao.queryStudentScoreFailed();
     }
 }

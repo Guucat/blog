@@ -4,6 +4,7 @@ import week_3.task_1.com.entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author shengyi
@@ -13,6 +14,6 @@ public interface StudentService {
     public int addStudent(Student student) throws SQLException, ClassNotFoundException;
     public int deleteStudentById(String studentId) throws SQLException, ClassNotFoundException;
     public int updateStudentById(String studentId, Student student) throws SQLException, ClassNotFoundException;
-    public ArrayList<Student> queryAllStudent() throws SQLException, ClassNotFoundException;
-    public ArrayList<Student> queryStudentScoreFailed() throws SQLException, ClassNotFoundException;
+    public List<Student> queryAllStudent() throws SQLException, ClassNotFoundException;
+    public List<Student> queryStudentScoreFailed() throws SQLException, ClassNotFoundException;
 }

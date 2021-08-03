@@ -7,6 +7,7 @@ import week_3.task_1.com.util.BaseDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author shengyi
@@ -35,10 +36,10 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public ArrayList<Student> queryAllStudent() throws SQLException, ClassNotFoundException {
+    public List<Student> queryAllStudent() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM student";
         ResultSet res = BaseDao.QueryData(sql,new Object[] {});
-        ArrayList<Student> students = new ArrayList<>();
+        List<Student> students = new ArrayList<>();
         while (res.next()) {
             Student student = new Student(res.getString(1), res.getString(2),
                     res.getString(3), res.getInt(4), res.getInt(5),res.getInt(6));
@@ -48,10 +49,10 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public ArrayList<Student> queryStudentScoreFailed() throws SQLException, ClassNotFoundException {
+    public List<Student> queryStudentScoreFailed() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM student WHERE course1 + course2 + course3 < 180";
         ResultSet res = BaseDao.QueryData(sql, new Object[] {});
-        ArrayList<Student> students = new ArrayList<>();
+        List<Student> students = new ArrayList<>();
         while (res.next()) {
             Student student = new Student(res.getString(1), res.getString(2),
                     res.getString(3), res.getInt(4), res.getInt(5),res.getInt(6));
