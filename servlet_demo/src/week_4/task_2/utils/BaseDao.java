@@ -1,4 +1,4 @@
-package week_3.task_1.com.util;
+package week_4.task_2.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 /**
  * @author shengyi
- * @create 2021/8/3 - 14:18
+ * @create 2021/8/15 - 20:26
  */
 public class BaseDao {
     private BaseDao(){};
@@ -33,8 +33,8 @@ public class BaseDao {
         ConUtil.close(con, ps, null );
         return res;
     }
-
-    public static void close() {
-
+    public static int test(){
+        return 1;
     }
+
 }

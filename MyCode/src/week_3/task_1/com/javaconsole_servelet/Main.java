@@ -1,6 +1,7 @@
 package week_3.task_1.com.javaconsole_servelet;
 
-import org.jetbrains.annotations.TestOnly;
+
+
 import org.junit.Test;
 import week_3.task_1.com.entity.Student;
 import week_3.task_1.com.service.impl.StudentServiceImpl;
