@@ -8,8 +8,8 @@ public class RunMyRock {
     public static void main(String[] args) {
         MyClock myClock = new MyClock();
         //获取程序运行时间
-        //myClock.setTimeAutomatically();
+        myClock.setTimeAutomatically();
         //手动设置时间
-        myClock.setTimeByHand(2020,12,4);
+        //myClock.setTimeByHand(2020,12,4);
     }
 }

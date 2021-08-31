@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tang.blog.dao.CommentMapper">
+    <resultMap id="commentMap" type="com.tang.blog.bean.Comment">
+        <id column="comment_id" property="commentId"/>
+        <result column="user_id" property="userId"/>
+        <result column="article_id" property="articleId"/>
+        <result column="comment_text" property="commentText"/>
+        <result column="comment_like" property="commentLike"/>
+        <result column="comment_parent" property="commentParent"/>
+        <result column="comment_date" property="commentDate"/>
+        <collection column="comment_id" property="comment" select="com.tang.blog.dao.CommentMapper.queryCommentByCommentId"/>
+    </resultMap>
+
+    <select id="queryCommentByArticleId" resultMap="commentMap">
+        select *
+        from bg_comment
+        where comment_parent  =  0 and article_id = #{articleId}
+    </select>
+
+    <select id="queryCommentByCommentId" resultMap="commentMap">
+        select *
+        from bg_comment
+        where comment_parent = #{commentId}
+    </select>
+    <insert id="addOneComment">
+        insert into bg_comment (user_id,
+                                article_id,
+                                comment_text,
+                                comment_like,
+                                comment_parent,
+                                comment_date)
+        values (#{userId},
+                #{articleId},
+                #{commentText},
+                #{commentLike},
+                #{commentParent},
+                #{commentDate}
+                )
+    </insert>
+    <delete id="deleteOneComment">
+        delete from bg_comment where comment_id = #{commentId}
+    </delete>
+</mapper>

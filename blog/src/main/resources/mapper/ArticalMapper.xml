@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tang.blog.dao.ArticalMapper">
+    <resultMap id="articleMapWithComment" type="com.tang.blog.bean.Article">
+        <id column="article_id" property="articalId"/>
+        <result column="user_id" property="userId"/>
+        <result column="article_title" property="articleTitle"/>
+        <result column="article_text" property="articleText"/>
+        <result column="article_like" property="articleLike"/>
+        <result column="article_date" property="articalDate"/>
+        <collection property="comments" column="article_id" select="com.tang.blog.dao.CommentMapper.queryCommentByArticleId"/>
+    </resultMap>
+    <resultMap id="articleMaptoList" type="com.tang.blog.bean.Article">
+        <id column="article_id" property="articalId"/>
+        <result column="article_title" property="articleTitle"/>
+        <result column="article_date" property="articalDate"/>
+    </resultMap>
+    <insert id="addOneArticle">
+        insert into bg_article (user_id,
+                                article_title,
+                                article_text,
+                                article_like,
+                                article_date)
+        values (#{userId}, #{articleTitle}, #{articleText}, #{articleLike}, #{articalDate})
+    </insert>
+    <delete id="deleteOneArticle">
+        delete from bg_article where article_id = #{articleId}
+    </delete>
+    <update id="updateOneArticle">
+        update bg_article
+        set article_title = #{articleTitle}, article_text = #{articleText}
+        where article_id = #{articleId}
+    </update>
+    <select id="queryOneArticle" resultMap="articleMapWithComment">
+        select * from bg_article where article_id = #{articleId}
+    </select>
+    <select id="queryAllArticles" resultMap="articleMaptoList">
+        select article_id, article_title, article_date
+        from bg_article
+        where user_id = #{userId}
+    </select>
+</mapper>
